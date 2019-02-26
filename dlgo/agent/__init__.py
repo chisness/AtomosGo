@@ -7,3 +7,4 @@ Created on Fri Feb  8 21:03:25 2019
 """
 
 from . import naive
+from .base import Agent

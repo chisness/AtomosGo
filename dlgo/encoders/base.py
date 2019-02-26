@@ -7,7 +7,6 @@ Created on Mon Feb 11 07:23:37 2019
 """
 
 class Encoder:
-    import importlib
 
     def name(self):
         raise NotImplementedError()
@@ -27,11 +26,13 @@ class Encoder:
     def shape(self):
         raise NotImplementedError()
 
-    def get_encoder_by_name(name, board_size):
-        if isinstance(board_size, int):
-            board_size = (board_size, board_size)
-        module = importlib.import_module('dlgo.encoders.' + name)
-        constructor = getattr(module, 'create')
-        return constructor(board_size)
+import importlib
+
+def get_encoder_by_name(name, board_size):
+    if isinstance(board_size, int):
+        board_size = (board_size, board_size)
+    module = importlib.import_module('dlgo.encoders.' + name)
+    constructor = getattr(module, 'create')
+    return constructor(board_size)
 
         
